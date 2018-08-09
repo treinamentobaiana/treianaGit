@@ -8,3 +8,20 @@
 
 </body>
 </html>
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<c:forEach var="item" items="${imagens}">
+	<li>
+		<button class="btn btn-vermelho uploadmidia-btn-remover">X</button>
+		<a href="#" class="btn-modal-imagem">
+			<fmt:formatDate value="${item.dataCadastro.time}" pattern="yyyyMMdd'/'" var="pasta" />
+			<img src="${caminho}${pasta}${item.nomeArquivo}" alt="${item.alt}">
+		</a>
+		<input type="hidden" name="arquivosImagens[]" value="${item.codigo}" />
+		<input type="hidden" name="dto.idsParaExcluir[]" value="${item.codigo}" />
+	</li>
+</c:forEach>
